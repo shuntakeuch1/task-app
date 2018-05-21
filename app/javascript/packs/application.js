@@ -9,5 +9,5 @@
 
 console.log('Hello World from Webpacker')
 // require('./hello_react.jsx') // 追加する
-require('./todos.js') // 追加する
+require('./index.js') // 追加する
 

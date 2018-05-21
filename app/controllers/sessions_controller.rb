@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :logged_in_user, only: [:new,:create]
+
   def new
   end
 
@@ -17,4 +19,5 @@ class SessionsController < ApplicationController
     log_out
     redirect_to login_url
   end
+
 end
