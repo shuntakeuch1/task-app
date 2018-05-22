@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom';
-import Project from './components/Project';
+// import Project from './components/Project';
+import Project from './containers/Project';
 // import Footer from './Footer'
 // import AddTodo from '../containers/AddTodo'
 // import VisibleTodoList from '../containers/VisibleTodoList'

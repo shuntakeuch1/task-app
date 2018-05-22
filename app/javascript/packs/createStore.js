@@ -5,7 +5,9 @@ import {
 } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
+import 'babel-polyfill'         // redux-thunk変換必須
 import { routerReducer, routerMiddleware } from 'react-router-redux';
+
 
 import * as reducers from './reducers';
 
