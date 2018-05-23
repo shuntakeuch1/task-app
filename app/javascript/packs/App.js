@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 // import Project from './components/Project';
 import Project from './containers/Project';
+import Nav from './containers/Nav';
+
 // import Footer from './Footer'
 // import AddTodo from '../containers/AddTodo'
 // import VisibleTodoList from '../containers/VisibleTodoList'
@@ -17,34 +19,22 @@ class App extends Component{
   render(){
     return(
         <div className="App">
-        <ul>
-        <li><Link to="/all">すべてのタスク</Link></li>
-        <li><Link to="/project/1">First Project</Link></li>
-        <li><Link to="/project/2">Next Project</Link></li>
-        </ul>
+        <Nav />
 
+        <Switch>
         <Route path="/all" component={Project} />
+        <Route
+      path="/project/1"
+      render={() => <Redirect to="/all" />}
+      />
         <Route path="/project/:id"
       render={
           ({match}) => <Project projectId={match.params.id} />
       }
         />
+        </Switch>
         </div>
     );
   }
 }
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <h1 className="App-title">Welcome to React</h1>
-//         </header>
-//         <p className="App-intro">
-//           To get started, edit <code>src/App.js</code> and save to reload.
-//         </p>
-//       </div>
-//     );
-//   }
-// }
 export default App
