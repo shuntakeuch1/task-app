@@ -14,7 +14,8 @@ const getTask = response =>{
 
 // 初期状態
 const initialState = {
-  projectId: undefined,
+  // projectId: undefined,
+  project: undefined,
   task: undefined,
   error: false
 };
@@ -24,7 +25,7 @@ export default (state = initialState, action) => {
       //リクエスト開始時に状態をリセット
     case 'START_REQUEST':
       return {
-        projectId: action.payload.projectId,
+        project: action.payload.project,
         task: undefined,
         error: false
       };

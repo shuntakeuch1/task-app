@@ -1,28 +1,36 @@
 import fetchJsonp from 'fetch-jsonp';
 import qs from 'qs';
+import { replace } from 'react-router-redux';
 
 const API_URL = 'http://localhost:3000/projects/'
 // const API_URL = 'https://shopping.yahooapis.jp/ShoppingWebService/V1/json/categoryRanking';
 // const API_ID = 'dj00aiZpPW95cU5CN3BZenA5YyZzPWNvbnN1bWVyc2VjcmV0Jng9ZDg-'
 
-const startRequest = projectId => ({
+const startRequest = project => ({
   type: 'START_REQUEST',
-  payload: { projectId },
+  payload: { project },
 });
 
-const receiveData = (projectId,error,response) => ({
+const receiveData = (project,error,response) => ({
   type: 'RECEIVE_DATA',
-  payload: { projectId, error, response },
+  payload: { project, error, response },
 });
 
-const finishRequest = projectId => ({
+const finishRequest = project => ({
   type: 'FINISH_REQUEST',
-  payload: { projectId },
+  payload: { project },
 })
 
 export const fetchProject = projectId => {
-  return async dispatch => {
-    dispatch(startRequest(projectId));
+  return async (dispatch, getState) => {
+    const projects = getState().ProjectList.projects
+    const project = projects.find(project => (project.id === projectId));
+    // 対応するデータがない場合はトップページへリダイレクト
+    if (typeof project === 'undefined'){
+      dispatch(replace('/'));
+      return;
+    }
+    dispatch(startRequest(project));
 
     // const queryString = qs.stringify({
     //   appid: API_ID,
@@ -33,7 +41,6 @@ export const fetchProject = projectId => {
       // const responce = await fetchJsonp(`${API_URL}?${queryString}`);
       const response = await fetchJsonp(`${API_URL}${projectId}`);
       const data = await response.json();
-      console.log(data);
       dispatch(receiveData(projectId, null, data));
     } catch (err) {
       dispatch(receiveData(projectId,err));
