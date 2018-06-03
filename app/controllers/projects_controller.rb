@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+
   def index
     @projects = Project.all
     render json: @projects
@@ -6,7 +7,8 @@ class ProjectsController < ApplicationController
 
   def show
     @tasks = Task.where(project_id: params[:id])
-    render json: @tasks
+    @project = Project.find(params[:id])
+    @taskInput = Task.new()
   end
 
 end

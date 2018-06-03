@@ -7,5 +7,6 @@
 bundle install
 yarn install
 bundle exec rake db:migrate
-foreman start
+# foreman start
+rails start
 ```
