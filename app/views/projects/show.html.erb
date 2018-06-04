@@ -5,6 +5,7 @@
 <%= form_for(@taskInput ,remote: true) do |f|  %>
     <div class="ui fluid input action">
         <%= f.hidden_field :project_id, value: @project.id %>
+        <%= f.hidden_field :is_completed, value: false %>
         <%= f.text_field :title, placeholder: "New Task" %>
         <%= button_tag type: "submit", class: "ui teal button" do %>
             <i class="add icon"></i>
