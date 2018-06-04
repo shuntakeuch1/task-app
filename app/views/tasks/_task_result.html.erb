@@ -1,0 +1,11 @@
+<div class="ui middle aligned selection list">
+    <% @tasks.each do | task | %>
+        <div class="item">
+            <div class="content">
+                <div class="header">
+                    <%= task.title  %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>
