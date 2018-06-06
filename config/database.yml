@@ -21,5 +21,12 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  # <<: *default
+  # database: db/production.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  database: taskapp
+  pool: 5
+  username: root
+  # password:
+  # socket: /var/lib/mysql/mysql.sock
